@@ -68,9 +68,9 @@ function App() {
     console.log('clear');
   }
 
-const filteredProfiles = profiles.filter((profile) => {
-  title === '' || profile.title === title && profile.name.toLowerCase().includes(search.toLowerCase()); 
-})
+  const filteredProfiles = profiles.filter((profile) => {
+    return (title === '' || profile.title === title) && profile.name.toLowerCase().includes(search.toLowerCase());
+  });
 
   return (
     <>
