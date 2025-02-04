@@ -7,6 +7,7 @@ import Card from './components/Card';
 import img from './assets/profile.jpg';
 import img2 from './assets/profile2.jpg';
 import Wrapper from './components/Wrapper';
+import ProfileForm from './components/ProfileForm';
 
 
 function App() {
@@ -83,6 +84,9 @@ function App() {
       </Wrapper>
       <Wrapper>
           <About />
+      </Wrapper>
+      <Wrapper>
+        <ProfileForm />
       </Wrapper>
       <Wrapper>
         <div className="filter-wrapper">
