@@ -5,8 +5,7 @@ const Navbar = () => {
         <nav className="navbar">
             <ul>
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Profile 1</a></li>
-                <li><a href="#">Profile 2</a></li>
+                <li><a href="#profile-form">Profile Form</a></li>
             </ul>
         </nav>
     );

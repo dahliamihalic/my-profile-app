@@ -4,14 +4,24 @@ import './styles/global.css';
 import About from './components/About';
 import Navbar from './components/Navbar';
 import Card from './components/Card';
-import img from './assets/profile.jpg';
-import img2 from './assets/profile2.jpg';
 import Wrapper from './components/Wrapper';
 import ProfileForm from './components/ProfileForm';
+import { useEffect } from 'react';
 
 
 function App() {
-  const profiles = [
+  //profiles
+  const [profiles, setProfiles] = useState([]);
+  useEffect(() => {
+    fetch("https://web.ics.purdue.edu/~omihalic/profile-app/fetch-data.php")
+    .then((res)=> res.json())
+    .then((data)=> {
+      setProfiles(data);
+      console.log(data)
+    })
+  },[]);
+
+ /*
     {
       img: img,
       name: 'John Doe',
@@ -47,8 +57,19 @@ function App() {
       name: 'Peppa Pig',
       title: 'Graphic Designer',
       email: 'hohey@gmail.com'
-    }
-  ]
+    }*/
+
+
+  //light/dark mode
+  const [mode, setMode] = useState("light");
+  const handleModeChange = () => {
+    setMode(mode === "light" ? "dark" : "light");
+  };
+//animation
+  const [animation, setAnimation] = useState(false);
+  const handleAnimation = () => {
+    setAnimation(false);
+  };
 
   const titles = [... new Set(profiles.map((profile) => profile.title))]; //get unique titles
 
@@ -66,20 +87,24 @@ function App() {
   const handleClear = () => {
     setTitle('');
     setSearch('');
-    console.log('clear');
+    console.log("clear ");
   }
 
   const filteredProfiles = profiles.filter((profile) => {
     return (title === '' || profile.title === title) && profile.name.toLowerCase().includes(search.toLowerCase());
   });
 
+  const buttonStyle = {
+    border: "1px solid #ccc",
+  };
+
   return (
     <>
     <header>
-        <Navbar />
+      <Navbar mode={mode} updateMode={handleModeChange}/>    
     </header>
-    <main>
-      <Wrapper>
+    <main className={mode === "light" ? "light" : "dark"}>
+    <Wrapper>
           <h1>My Profile App</h1>
       </Wrapper>
       <Wrapper>
@@ -99,11 +124,12 @@ function App() {
              <input type="text" id="search" onChange={handleSearchChange}/>
              <div>
                 <button onClick={handleClear}>Clear</button>
+                <span className="sr-only">Reset</span>
              </div>
           </div>
         </div>
           <div className="profile-cards">
-            {filteredProfiles.map((profile) => (<Card key={profile.name} {...profile} />))}
+            {filteredProfiles.map((profile) => (<Card key={profile.id} {...profile}  animate={animation} updateAnimate={handleAnimation} />))}
           </div>
       </Wrapper>
     </main>

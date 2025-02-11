@@ -1,26 +1,26 @@
-import '../styles/card.css';
-import propTypes from 'prop-types';
+import style from '../styles/card.module.css';
+import PropTypes from 'prop-types';
 
-const Card = ({name, title, email, img}) => {
-       return(
-        <div className="profile-card">
-            <div className="profile-card__img">
-                <img src={img} alt={name} />
+const Card = ({image_url, name, title, email, animate, updateAnimate}) => {
+    return (
+        <div className={`${style["profile-card"]} ${animate ? style["is-entering"] : ""}`}
+        onAnimationEnd={updateAnimate}
+        > 
+            <div className={style["profile-card__image"]}>
+                <img src={image_url} alt={name} />
             </div>
-            <div className="profile-card__content">
+            <div className={style["profile-card__content"]}>
                 <p>{name}</p>
                 <p>{title}</p>
                 <p><a href={`mailto:${email}`}>{email}</a></p>
             </div>
         </div>
     );
-};
-
-Card.propTypes = {  
-    name: propTypes.string.isRequired,
-    title: propTypes.string,
-    email: propTypes.string.isRequired,
-    img: propTypes.string.isRequired
-};
-
+}
+Card.propTypes = {
+    image_url: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    title: PropTypes.string,
+    email: PropTypes.string.isRequired
+}
 export default Card;

@@ -1,3 +1,14 @@
+@keyframes cardEnter {
+    0% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
 .profile-card{
     display: flex;
     flex-direction: column;
@@ -11,7 +22,11 @@
     width: 200px;
     height: 400px;
     float: left;
-}
+    &.is-entering {
+        opacity: 0;
+        transform: scale(0.9);
+        animation: cardEnter 0.5s forwards;}
+  }
 .profile-card__img{
     border-radius: 50%;
     overflow: hidden;
