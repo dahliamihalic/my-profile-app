@@ -41,7 +41,7 @@ const ProfileEditPage = () => {
     <Wrapper>
       <h1>Edit Profile</h1>
       <ProfileForm isEdit={true} currentProfile={profile}/>
-      <button onClick={handleDelete} style={{margin: "3rem auto 0", display: "block"}}>Delete Profile</button>
+      <button onClick={handleDelete}>Delete Profile</button>
     </Wrapper>
   );
 };

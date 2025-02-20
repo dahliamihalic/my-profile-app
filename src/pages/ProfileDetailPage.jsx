@@ -1,5 +1,5 @@
 import Wrapper from '../components/Wrapper';
-import {useParams} from 'react-router-dom'; 
+import {useParams, Link} from 'react-router-dom'; 
 import { useEffect } from 'react';
 import { useState } from 'react';
 
@@ -26,6 +26,7 @@ const ProfileDetailPage = () => {
                     <p>{profile.email}</p>
                     <p>{profile.bio}</p>
                     <img src={profile.image_url} alt={profile.name} />
+                    <p><Link to={`/profile/${id}/edit`}>Edit</Link></p>
                 </>
             )}
         </Wrapper>

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const Card = ({ image_url, name, title, email }) => {
   return (
     <div
-      className={`${style["profile-card"]} ${style["is-entering"]}`}
+      className={`${style["profile-card"]}`}
     >
       <div className={style["profile-card__image"]}>
         <img src={image_url} alt={name} />
