@@ -1,8 +1,220 @@
-.section{
-    padding: 0;
+/* Global styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: white;
+    color: #191a1a;
+    font-size: 1rem;
     margin: 0;
-}
-.p{
-    margin-block-start: 0px;
-    margin-block-end: 0px;
-}
+    padding: 0;
+  }
+  main {
+    height: 100%;
+    min-height: 100vh;
+    &.dark {
+      background-color: #191a1a;
+      color: white;
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p {
+        color: white;
+      }
+    }
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #191a1a;
+    font-family: 'Roboto', sans-serif;
+    margin-bottom: 0.625rem;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+  
+  h2 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+  
+  h3 {
+    font-size: 1.6rem;
+  }
+  
+  h4 {
+    font-size: 1.4rem;
+  }
+  
+  h5 {
+    font-size: 1.2rem;
+  }
+  
+  h6 {
+    font-size: 1rem;
+  }
+  
+  p {
+    font-size: 1.125rem;
+    color: #191a1a;
+    margin-bottom: 1.25rem;
+  }
+  
+  a {
+    color: #646cff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #191a1a;
+  }
+  
+  ul,
+  ol {
+    padding-left: 1.25rem;
+  }
+  
+  li {
+    margin-bottom: 0.3125rem;
+  }
+  #root {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    margin: 0;
+    max-width: 2000px;
+  }
+  .section {
+    width: 100%;
+    padding: 4rem;
+  }
+  .section + .section {
+    margin-top: -4rem;
+  }
+  .container {
+    margin: 10pt, auto;
+  }
+  .sr-only {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  /* Tablet Styles */
+  @media screen and (max-width: 1024px) {
+    body {
+      font-size: 1rem;
+    }
+  
+    h1 {
+      font-size: 2rem;
+    }
+  
+    h2 {
+      font-size: 1.8rem;
+    }
+  
+    h3 {
+      font-size: 1.6rem;
+    }
+  
+    h4 {
+      font-size: 1.4rem;
+    }
+  
+    h5 {
+      font-size: 1.2rem;
+    }
+  
+    h6 {
+      font-size: 1rem;
+    }
+  
+    p {
+      font-size: 1rem;
+    }
+  
+    ul,
+    ol {
+      padding-left: 1.25rem;
+    }
+    .section {
+      padding: 3rem 1.5rem;
+    }
+    .container {
+      max-width: 950px;
+    }
+  }
+  /* Mobile Styles */
+  @media screen and (max-width: 768px) {
+    body {
+      font-size: 0.875rem;
+    }
+  
+    h1 {
+      font-size: 1.8rem;
+    }
+  
+    h2 {
+      font-size: 1.6rem;
+    }
+  
+    h3 {
+      font-size: 1.4rem;
+    }
+  
+    h4 {
+      font-size: 1.2rem;
+    }
+  
+    h5 {
+      font-size: 1rem;
+    }
+  
+    h6 {
+      font-size: 0.9rem;
+    }
+  
+    p {
+      font-size: 0.9rem;
+    }
+  
+    ul,
+    ol {
+      padding-left: 1.125rem;
+    }
+    .section {
+      padding: 3rem 1rem;
+    }
+    .container {
+      max-width: 100%;
+    }
+    .flex-container {
+      flex-direction: column;
+    }
+  }
+  
+  /* button*/
+  button {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  button:hover {
+    background-color: #f7f7f7;
+    color: #191a1a;
+  }

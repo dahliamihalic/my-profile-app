@@ -81,7 +81,7 @@ const HomePage = () => {
           />
         </div>
         <button onClick={handleClear} style={buttonStyle}>
-          <span className="sr-only">Reset</span>
+          <span>Reset</span>
         </button>
       </div>
       <div className={styles["profile-cards"]}>

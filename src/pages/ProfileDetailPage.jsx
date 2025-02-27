@@ -2,6 +2,7 @@ import Wrapper from '../components/Wrapper';
 import {useParams, Link} from 'react-router-dom'; 
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { AuthProvider } from '../contexts/AuthContext';
 
 const ProfileDetailPage = () => {
     const {id} = useParams().id;

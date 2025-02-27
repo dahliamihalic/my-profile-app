@@ -1,4 +1,5 @@
 import "./App.css";
+import "./styles/global.css";
 import AboutPage from "./pages/AboutPage";
 import Navbar from "./components/Navbar";
 import AddProfilePage from "./pages/AddProfilePage";
@@ -7,35 +8,47 @@ import NotFound from "./pages/NotFound";
 import ProfileDetailPage from "./pages/ProfileDetailPage";
 import ProfileEditPage from "./pages/ProfileEditPage";
 import ProfileIndexPage from "./pages/ProfileIndexPage";
-import { useState, useEffect } from "react";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 import { HashRouter, Routes, Route } from "react-router-dom";
+import { useContext } from "react";
+import { ModeContext, ModeProvider } from "./contexts/ModeContext";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { AuthProvider } from "./contexts/AuthContext";
 
 const App = () => {
-  //Variable to store the mode state
-  const [mode, setMode] = useState("light");
-  //function to update the mode state
-  const handleModeChange = () => {
-    setMode(mode === "light" ? "dark" : "light");
-  };
+  const { mode } = useContext(ModeContext);
 
   return (
-    <HashRouter>
-      <header>
-        <Navbar mode={mode} updateMode={handleModeChange} />
-      </header>
-      <main className={mode === "light" ? "light" : "dark"}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/add-profile" element={<AddProfilePage />} />
-          <Route path="profile/:id" element={<ProfileIndexPage />}>
-            <Route index element={<ProfileDetailPage />} />
-            <Route path="edit" element={<ProfileEditPage />} />
-          </Route>
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-    </HashRouter>
+    <AuthProvider>
+    
+      <HashRouter>
+        <header>
+          <Navbar />
+        </header>
+        <main className={mode === "light" ? "light" : "dark"}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/add-profile" element={
+              <ProtectedRoute>
+                <AddProfilePage />
+              </ProtectedRoute>
+            } />
+            <Route path="/profile/:id" element={<ProfileIndexPage />}>
+              <Route index element={<ProfileDetailPage />} />
+              <Route path="edit" element={<ProfileEditPage />} />
+            </Route>
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/logout" element={<LoginPage />} />
+
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+      </HashRouter>
+   
+    </AuthProvider>
   );
 };
 

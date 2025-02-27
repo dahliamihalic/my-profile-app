@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const Card = ({ image_url, name, title, email }) => {
   return (
     <div
-      className={`${style["profile-card"]}`}
+      className={`${style["profile-card"]} ${style["is-entering"]}`}
     >
       <div className={style["profile-card__image"]}>
         <img src={image_url} alt={name} />
@@ -12,7 +12,6 @@ const Card = ({ image_url, name, title, email }) => {
       <div className={style["profile-card__content"]}>
         <p>{name}</p>
         <p>{title}</p>
-        <p><a href={`mailto:${email}`}>{email}</a></p>
       </div>
     </div>
   );

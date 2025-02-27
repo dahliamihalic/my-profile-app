@@ -132,7 +132,7 @@ const ProfileForm = ({ isEdit = false, currentProfile = {} }) => {
           data.email.trim() === "" ||
           data.title.trim() === "" ||
           data.bio.trim() === "" ||
-          data.image === null
+          (!isEdit && !data.image)
         }
       >
         Submit

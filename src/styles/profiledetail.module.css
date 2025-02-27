@@ -1,0 +1,21 @@
+.flex-container{
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+  }
+  .button{
+    padding: 0.5rem 1rem;
+    background-color: #1a1a1a;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: #f7f7f7 0.3s;
+    margin-top: 3rem;
+  }
+  .button:hover{
+    background-color: #f7f7f7;
+    color: #191a1a;
+  }
