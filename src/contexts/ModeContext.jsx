@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useContext } from "react";
 
 export const ModeContext = createContext();
 
@@ -14,3 +14,11 @@ export const ModeProvider = ({children}) => {
     </ModeContext.Provider>
   );
 };
+
+export function useMode() {
+  const context = useContext(ModeContext);
+  if (context === undefined) {
+    throw new Error("useMode must be used within a ModeProvider");
+  }
+  return context;
+}

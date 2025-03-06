@@ -1,68 +1,19 @@
 import { useState, useEffect, useContext, useRef } from "react";
 import style from "../styles/profileform.module.css";
 import { useNavigate } from "react-router-dom";
-import { ModeContext, ModeProvider } from "../contexts/ModeContext";
+import { ModeProvider, useMode } from "../contexts/ModeContext";
 import AuthContext from "../contexts/AuthContext";
+import useAuthform from "../hooks/authFormHook";
 
 const AuthForm = ({ isRegister = false }) => {
     const { login } = useContext(AuthContext);
-    const navigate = useNavigate();
-    const [errors, setErrors] = useState('');
-    const [submitting, setSubmitting] = useState(false);
-    const [successMessage, setSuccessMessage] = useState("");
-    const { mode } = useContext(ModeContext);
-    const [data, setData] = useState({
-        username: "",
-        password: "",
-        email: "",
-    });
-
+    const { mode, toggleMode } = useMode();
+    const { data, errors, submitting, successMessage, handleChange, handleSubmit} = useAuthform(isRegister);
     const nameRef = useRef(null);
     useEffect(() => {
         nameRef.current.focus();
     }, []);
-
-    const handleChange = (e) => {
-        setData({ ...data, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setSubmitting(true);
-        const formData = new FormData();
-        formData.append("username", data.username.trim());
-        formData.append("password", data.password.trim());
-        if (isRegister) formData.append("email", data.email.trim());
-        formData.append("action", isRegister ? "register" : "login");
-        try {
-            const response = await fetch(`https://web.ics.purdue.edu/~omihalic/profile-app/auth.php`, {
-                method: "POST",
-                body: formData,
-            });
-            const data = await response.json();
-            if (data.success) {
-                setErrors('');
-                setSuccessMessage(data.message);
-                setData({
-                    username: "",
-                    password: "",
-                    email: "",
-
-                });
-                login();
-                navigate("/");
-            } else {
-                setSuccessMessage('');
-                setErrors(data.error);
-            }
-        } catch (error) {
-            console.error("Error:", error);
-        }
-        finally {
-            setSubmitting(false);
-        }
-    };
-
+    
     return (
         <ModeProvider>
             <form onSubmit={handleSubmit} className={style["profile-form"]}>
