@@ -1,6 +1,6 @@
 import Card from "../components/Card";
 import Wrapper from "../components/Wrapper";
-import { useState,useEffect, useReducer } from "react";
+import { useState,useEffect, useReducer, useLayoutEffect } from "react";
 import styles from "../styles/home.module.css";
 import { Link } from "react-router-dom";
 import { initialState, homeReducer } from "../reducers/homeReducer";
@@ -64,6 +64,11 @@ const HomePage = () => {
   const buttonStyle = {
     border: "1px solid #ccc",
   };
+
+  useLayoutEffect(() => {
+    document.title = "Home Page";
+  }
+  , []);
 
   return (
     <Wrapper>

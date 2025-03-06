@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import style from "../styles/ProfileForm.module.css";
 import { useNavigate } from "react-router-dom";
 
@@ -11,6 +11,12 @@ const ProfileForm = ({ isEdit = false, currentProfile = {} }) => {
     bio: "",
     image: null,
   });
+
+  const nameRef = useRef(null);
+  useEffect(() => {
+    nameRef.current.focus();
+  }, []);
+
   useEffect(() => {
     if (isEdit) {
       setData({
@@ -84,6 +90,7 @@ const ProfileForm = ({ isEdit = false, currentProfile = {} }) => {
       <input
         type="text"
         name="name"
+        ref = {nameRef}
         placeholder="Name"
         required
         value={data.name}
