@@ -31,7 +31,7 @@ const Navbar = () => {
             <Link to="/register">Register</Link>
           </>,
           <>
-            <Link to="/logout">Logout (no function yet)</Link> 
+            <Link to="/logout">Logout</Link> 
           </>
         )}
         <button onClick={toggleMode}>

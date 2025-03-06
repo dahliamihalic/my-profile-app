@@ -1,4 +1,4 @@
-import { createContext, useState,useContext } from "react";
+import { createContext, useState, useLayoutEffect, useContext } from "react";
 import { ModeContext, ModeProvider } from "./ModeContext";
 
 export const AuthContext = createContext();
@@ -6,6 +6,12 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
 
   const [isLogin, setIsLogin] = useState(false);
+  useLayoutEffect(() => {
+    const isLogin = localStorage.getItem("isLogin");
+    if (isLogin) {
+      setIsLogin(isLogin === "true");
+    }
+  }, []);
   const login = () => {
     setIsLogin(true);
     localStorage.setItem("isLogin", "true");

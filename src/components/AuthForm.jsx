@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import style from "../styles/profileform.module.css";
 import { useNavigate } from "react-router-dom";
 import { ModeContext, ModeProvider } from "../contexts/ModeContext";
@@ -17,6 +16,11 @@ const AuthForm = ({ isRegister = false }) => {
         password: "",
         email: "",
     });
+
+    const nameRef = useRef(null);
+    useEffect(() => {
+        nameRef.current.focus();
+    }, []);
 
     const handleChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value });
@@ -43,7 +47,9 @@ const AuthForm = ({ isRegister = false }) => {
                     username: "",
                     password: "",
                     email: "",
+
                 });
+                login();
                 navigate("/");
             } else {
                 setSuccessMessage('');
@@ -62,7 +68,7 @@ const AuthForm = ({ isRegister = false }) => {
             <form onSubmit={handleSubmit} className={style["profile-form"]}>
                 <h1>{isRegister ? "Register" : "Login"}</h1>
                 <label htmlFor="username">Username</label>
-                <input type="text" id="username" name="username" required value={data.username} onChange={handleChange} />
+                <input ref={nameRef} type="text" id="username" name="username" required value={data.username} onChange={handleChange} />
                 <label htmlFor="password">Password</label>
                 <input type="password" id="password" name="password" required minLength={8} value={data.password} onChange={handleChange} />
                 {isRegister && <><label htmlFor="email">Email</label>

@@ -15,10 +15,12 @@ import { useContext } from "react";
 import { ModeContext, ModeProvider } from "./contexts/ModeContext";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./contexts/AuthContext";
+import { AuthContext } from "./contexts/AuthContext";
+import LogoutPage from "./pages/LogoutPage";
+
 
 const App = () => {
   const { mode } = useContext(ModeContext);
-
   return (
     <AuthProvider>
     
@@ -41,7 +43,7 @@ const App = () => {
             </Route>
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<RegisterPage />} />
-            <Route path="/logout" element={<LoginPage />} />
+            <Route path="/logout" element={ <LogoutPage /> }  />
 
             <Route path="*" element={<NotFound />} />
           </Routes>
